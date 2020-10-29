@@ -20,11 +20,10 @@ class CreateProductAttributeValuesTable extends Migration
             $table->text('text_value')->nullable();
             $table->boolean('boolean_value')->nullable();
             $table->integer('integer_value')->nullable();
-            $table->float('float_value')->nullable();
+            $table->decimal('float_value')->nullable();
             $table->datetime('datetime_value')->nullable();
             $table->date('date_value')->nullable();
             $table->text('json_value')->nullable();
-
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
