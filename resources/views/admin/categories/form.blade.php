@@ -8,7 +8,7 @@
 
 <div class="content">
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-9">
             <div class="card card-default">
                 <div class="card-header card-header-border-bottom">
                         <h2>{{ $formTitle }} Category</h2>
