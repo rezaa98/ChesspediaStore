@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    //lain kali teliti, masa data price ga ke masuk -.-
-
     protected $fillable = [
         'user_id',
         'sku',
@@ -33,6 +31,11 @@ class Product extends Model
         return $this->belongsToMany('App\Models\Category', 'product_categories');
     }
 
+    public function productImages()
+    {
+        return $this->hasMany('App\Models\ProductImage');
+    }
+
     public static function statuses()
     {
         return [
@@ -42,3 +45,4 @@ class Product extends Model
         ];
     }
 }
+    

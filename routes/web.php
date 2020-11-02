@@ -16,21 +16,18 @@ Route::get('/', function () {
 });
 
 Route::group(
-    ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' =>['auth']],
+    ['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth']],
     function () {
         Route::get('dashboard', 'DashboardController@index');
         Route::resource('categories', 'CategoryController');
+        //ini buatnambahin rute nambahin, hapus, edit foto produk
         Route::resource('products', 'ProductController');
+        Route::get('products/{productID}/images', 'ProductController@images');
+        Route::get('products/{productID}/add-image', 'ProductController@add_image');
+        Route::post('products/images/{productID}', 'ProductController@upload_image');
+        Route::delete('products/images/{imageID}', 'ProductController@remove_image');
     }
 );
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
