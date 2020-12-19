@@ -6,33 +6,31 @@
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-header card-header-border-bottom">
-                        <h2>Products</h2>
+                        <h2>Attributes</h2>
                     </div>
                     <div class="card-body">
                         @include('admin.partials.flash')
                         <table class="table table-bordered table-stripped">
                             <thead>
                                 <th>#</th>
-                                <th>SKU</th>
-                                <th>Type</th>
+                                <th>Code</th>
                                 <th>Name</th>
-                                <th>Price</th>
-                                <th>Status</th>
-                                <th style="width:15%">Action</th>
+                                <th>Type</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
-                                @forelse ($products as $product)
+                                @forelse ($attributes as $attribute)
                                     <tr>    
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->sku }}</td>
-                                        <td>{{ $product->type }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ number_format($product->price) }}</td>
-                                        <td>{{ $product->status_label() }}</td>
+                                        <td>{{ $attribute->id }}</td>
+                                        <td>{{ $attribute->code }}</td>
+                                        <td>{{ $attribute->name }}</td>
+                                        <td>{{ $attribute->type }}</td>
                                         <td>
-                                            <a href="{{ url('admin/products/'. $product->id .'/edit') }}" class="btn btn-warning btn-sm">edit</a>
-                                            
-                                            {!! Form::open(['url' => 'admin/products/'. $product->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
+                                            <a href="{{ url('admin/attributes/'. $attribute->id .'/edit') }}" class="btn btn-warning btn-sm">edit</a>
+                                            @if ($attribute->type == 'select')
+                                            <a href="{{ url('admin/attributes/'. $attribute->id .'/options') }}" class="btn btn-success btn-sm">options</a>
+                                            @endif
+                                            {!! Form::open(['url' => 'admin/attributes/'. $attribute->id, 'class' => 'delete', 'style' => 'display:inline-block']) !!}
                                             {!! Form::hidden('_method', 'DELETE') !!}
                                             {!! Form::submit('remove', ['class' => 'btn btn-danger btn-sm']) !!}
                                             {!! Form::close() !!}
@@ -40,15 +38,15 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7">No records found</td>
+                                        <td colspan="5">No records found</td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
-                        {{ $products->links() }}
+                        {{ $attributes->links() }}
                     </div>
                     <div class="card-footer text-right">
-                        <a href="{{ url('admin/products/create') }}" class="btn btn-primary">Add New</a>
+                        <a href="{{ url('admin/attributes/create') }}" class="btn btn-primary">Add New</a>
                     </div>
                 </div>
             </div>
