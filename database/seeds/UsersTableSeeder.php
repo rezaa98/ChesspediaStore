@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -19,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('admin'),
         ];
 
-        if(!User::where('email', $adminUser['email'])->exists()) {
+        if (!User::where('email', $adminUser['email'])->exists()) {
             User::create($adminUser);
         }
     }
